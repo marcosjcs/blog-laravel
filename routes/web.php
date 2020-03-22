@@ -19,3 +19,14 @@ Route::get('/', function () {
 });
 
 Route::get('hello-world', 'HelloWorldController@index');
+
+Route::get('/post/{slug?}', function($slug = null) {
+    return !is_null($slug) ? $slug : 'Comportamento sem a existência do param slug';
+})->name('post.single');
+
+Route::get('/user/{id}', function($slug) {
+    return $slug;
+    })
+    ->where(['id' => '[0-9]+']);
+
+Route::resource('/users', 'UserController');
