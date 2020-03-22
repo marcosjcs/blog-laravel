@@ -9,6 +9,6 @@ class HelloWorldController extends Controller
     public function index(){
         $helloWorld = 'Hello World';
 
-        return view('hello_world.index', compact(helloWorld));
+        return view('hello_world.index', compact('helloWorld'));
     }
 }
