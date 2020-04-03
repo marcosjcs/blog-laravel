@@ -18,15 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('hello-world', 'HelloWorldController@index');
+Route::prefix('admin')->namespace('Admin')->group(function(){
 
-Route::get('/post/{slug?}', function($slug = null) {
-    return !is_null($slug) ? $slug : 'Comportamento sem a existência do param slug';
-})->name('post.single');
-
-Route::get('/user/{id}', function($slug) {
-    return $slug;
-    })
-    ->where(['id' => '[0-9]+']);
-
-Route::resource('/users', 'UserController');
+    Route::prefix('posts')->name('posts.')->group(function(){
+        Route::get('/create', 'PostController@create')->name('create');
+        
+        Route::post('/store', 'PostController@store')->name('store');
+    });
+});
