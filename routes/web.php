@@ -20,9 +20,6 @@ Route::get('/', function () {
 
 Route::prefix('admin')->namespace('Admin')->group(function(){
 
-    Route::prefix('posts')->name('posts.')->group(function(){
-        Route::get('/create', 'PostController@create')->name('create');
-        
-        Route::post('/store', 'PostController@store')->name('store');
-    });
+    Route::resource('posts', 'PostController');
+
 });
